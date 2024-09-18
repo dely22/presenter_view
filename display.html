@@ -32,7 +32,7 @@
 
     <body>
         <video id="mainVideo" autoplay loop muted>
-            <source src="vids/video_1.mp4" type="video/mp4">
+            <source src="public/video_1.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
 
@@ -45,7 +45,7 @@
         <script>
             const socket = io();
             const videoElement = document.getElementById('mainVideo');
-            const defaultVideo = 'vids/video_1.mp4';
+            const defaultVideo = 'public/video_1.mp4';
 
             socket.on('play_video', (videoSrc) => {
                 // Stop the default video loop
