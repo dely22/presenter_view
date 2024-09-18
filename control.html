@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Control Panel</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                text-align: center;
+                padding: 20px;
+            }
+
+            h1 {
+                color: #333;
+            }
+
+            .video-thumbnail {
+                display: inline-block;
+                margin: 10px;
+                cursor: pointer;
+                border: 2px solid #ddd;
+                border-radius: 5px;
+                transition: border-color 0.3s ease, transform 0.3s ease;
+            }
+
+            .video-thumbnail img {
+                width: 150px;
+                height: 100px;
+                border-radius: 5px;
+            }
+
+            .video-thumbnail:hover {
+                border-color: #007bff;
+                transform: scale(1.05);
+                /* إضافة تأثير تكبير بسيط عند التمرير */
+            }
+
+            .video-thumbnail p {
+                margin: 5px 0;
+                color: #555;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Choose a Video to Play</h1>
+
+        <div class="video-thumbnail" data-video="vids/video_1.mp4">
+            <img src="vids/thumbnail1.jpg" alt="Video 1">
+            <p>Video 1</p>
+        </div>
+        <div class="video-thumbnail" data-video="vids/video_2.mp4">
+            <img src="vids/thumbnail2.jpg" alt="Video 2">
+            <p>Video 2</p>
+        </div>
+        <div class="video-thumbnail" data-video="vids/video_3.mp4">
+            <img src="vids/thumbnail13.jpg" alt="Video 3">
+            <p>Video 3</p>
+        </div>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            const socket = io();
+
+            document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
+                thumbnail.addEventListener('click', () => {
+                    const videoSrc = thumbnail.getAttribute('data-video');
+                    socket.emit('play_video', videoSrc);
+                });
+            });
+        </script>
+    </body>
+
+</html>
